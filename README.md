@@ -9,9 +9,7 @@ Stack:
 - [Pico](https://picocss.com/) (CSS)
 - [GraphQL](https://graphql.org/) (API)
 
-_If you feel lost at some point, the docs are very readable imo_.
-
-## How to build
+## Run the project locally
 
 This repository uses `yarn workspaces` for easy setup.
 
