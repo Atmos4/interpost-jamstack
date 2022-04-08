@@ -1,0 +1,18 @@
+---
+import "../styles/bootstrap-grid.css"
+
+import Page from "../layouts/Page.astro";
+import Tour from "../components/Tour.astro";
+
+let title = "Interpost";
+---
+
+<Page {title}>
+  <header class="container">
+    <div>
+      <h1>Welcome to Interpost v2, built with <a href="https://astro.build/">Astro</a> and <a href="https://strapi.io/">Strapi</a></h1>
+    </div>
+  </header>
+
+  <Tour />
+</Page>

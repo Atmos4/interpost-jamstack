@@ -1,0 +1,48 @@
+---
+import ThemeSwitch from "../components/ThemeSwitch.svelte"
+
+const { title } = Astro.props;
+---
+<style>
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script:400|Open+Sans:400,400italic,600,600italic,800");
+.main-logo {
+  background: #444;
+  color: #fff;
+  border-radius: 6px;
+  font-family: "Oleo Script", serif;
+  font-weight: 400;
+  font-size: 1.8em;
+  line-height: 0.8em;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <nav class="container">
+      <ul>
+        <li><a class="contrast main-logo" href="/">Interpost</a></li>
+      </ul>
+      <ul>
+        <li><a class="contrast" href="/posts">Articles</a></li>
+        <li><a class="contrast" href="/about">La team</a></li>
+        <li><ThemeSwitch client:load /></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <slot />
+    </main>
+  </body>
+</html>

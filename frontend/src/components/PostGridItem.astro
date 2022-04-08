@@ -1,0 +1,45 @@
+---
+import "../styles/bootstrap-grid.css";
+
+export interface PostGridItemProps {
+    title: string;
+    description: string;
+    slug: string;
+    imageUrl?: string;
+    imageAlt?: string;
+}
+const { title, description, slug, imageUrl, imageAlt } = Astro.props as PostGridItemProps;
+---
+<style>
+article{
+    padding:0;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+}
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+.text{
+    height: 200px;
+    padding: 10px;
+    display: grid;
+}
+.text h3,.text p {
+   margin: 0;
+}
+</style>
+<div class="col-sm-12 col-lg-6 col-xl-4">
+    <article>
+        <a class="contrast grid-item" href={`/post/${slug}`}>
+            <img class="image" src={imageUrl} alt={imageAlt} />
+            <div class="text">
+                <h3>{title}</h3>
+                <p>{description}</p>
+            </div>
+        </a>
+    </article>
+</div>

@@ -1,0 +1,52 @@
+---
+import Page from "../../layouts/Page.astro";
+import PostGridItem from "../../components/PostGridItem.astro";
+
+const strapiUrl = import.meta.env.STRAPI_URL;
+const graphqlQuery = `
+query{
+  posts{
+    data{
+      attributes{
+        title,
+        description,
+        slug,
+        featuredImage{
+          data{
+            attributes{
+              alternativeText,
+              formats,
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+export async function getStaticPaths({paginate}) {
+    const data =  await fetch(`${strapiUrl}/graphql`,{
+      method:'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        query: graphqlQuery,
+      }),
+    }).then(res => res.json());
+    return paginate(data.data.posts.data, {pageSize: 6});
+}
+
+const { page } = Astro.props;
+---
+
+<Page title={"Articles"}>
+    <div class="row">
+      {page.data.map((post)=> 
+        <PostGridItem 
+          title={post.attributes.title} 
+          description={post.attributes.description} 
+          slug={post.attributes.slug}
+          imageUrl={strapiUrl + post.attributes.featuredImage.data.attributes.formats.medium.url}
+          imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
+    </div>
+</Page>

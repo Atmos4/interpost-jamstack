@@ -1,0 +1,84 @@
+---
+import Page from "../../layouts/Page.astro";
+import { Markdown } from 'astro/components';
+
+const strapiUrl = import.meta.env.STRAPI_URL;
+const slugsQuery = `
+query{
+    posts{
+        data{
+            attributes{
+                slug,
+            }
+        }
+    }
+}
+`;
+
+const getPostQuery = `
+query($slug: String){
+    findSlug(modelName: "post", slug: $slug) {
+        ... on PostEntityResponse {
+            data {
+                attributes {
+                    title
+                    description
+                    content
+                    featuredImage {
+                        data {
+                            attributes {
+                                formats
+                            }
+                        }
+                    }
+                    author {
+                        data {
+                            attributes {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+`;
+
+export async function getStaticPaths() {
+    const data =  await fetch(`${strapiUrl}/graphql`,{
+      method:'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        query: slugsQuery,
+      }),
+    }).then(res => res.json());
+    return data.data.posts.data.map((post)=> ({ params: {slug: post.attributes.slug}}));
+}
+
+const {slug} = Astro.params;
+
+const postItem = await fetch(`${strapiUrl}/graphql`,{
+  method:'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        query: getPostQuery,
+        variables: {
+            "slug": slug
+        }
+      }),
+    }).then(res => res.json());
+
+const {title, description, content} = postItem.data.findSlug.data.attributes;
+const {alternativeText, formats} = postItem.data.findSlug.data.attributes.featuredImage.data.attributes;
+---
+<Page {title}>
+    <hgroup>
+        <h1>{title}</h1>
+        <h2>{description}</h2>
+    </hgroup>
+    <!--TODO: This will need to be changed once Cloudinary is setup-->
+    <img src={strapiUrl + formats.large.url} alt={alternativeText}>
+    <Markdown {content} />
+
+</Page>
