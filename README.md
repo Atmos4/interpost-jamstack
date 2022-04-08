@@ -1,8 +1,8 @@
-# [Interpost](https://www.interpost.fr) v2
+# [Interpost](https://www.interpost.fr) v2 with Strapi and Astro 🚀
 
-This is my attempt at migrating a pure PHP blog into a JAMStack monorepo, using Strapi as CMS and Astro as SSG. It was a lot of fun to do.
+JAMStack monorepo, using Strapi as CMS and Astro as SSG.
 
-Stack:
+Tech stack:
 
 - [Strapi](https://strapi.io/) (CMS)
 - [Astro](https://astro.build/) (SSG)
