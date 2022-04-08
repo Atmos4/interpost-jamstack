@@ -3,11 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "description": "Strapi + Astro = ♥",
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
   "scripts": {
+    "heroku": "git subtree push --prefix backend heroku master",
     "dev:backend": "yarn --cwd backend dev",
     "dev:frontend": "yarn --cwd frontend dev",
     "dev": "concurrently \"yarn dev:backend\" \"wait-on http://localhost:1337 && yarn dev:frontend\""
