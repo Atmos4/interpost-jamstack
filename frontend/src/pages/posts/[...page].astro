@@ -45,7 +45,7 @@ const { page } = Astro.props;
           title={post.attributes.title} 
           description={post.attributes.description} 
           slug={post.attributes.slug}
-          imageUrl={import.meta.env.STRAPI_URL + post.attributes.featuredImage.data.attributes.formats.medium.url}
+          imageUrl={import.meta.env.STRAPI_URL ?? "" + post.attributes.featuredImage.data.attributes.formats.medium.url}
           imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
     </div>
 </Page>
