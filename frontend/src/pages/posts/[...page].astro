@@ -3,6 +3,7 @@ import Page from "../../layouts/Page.astro";
 import PostGridItem from "../../components/PostGridItem.astro";
 
 export async function getStaticPaths({paginate}) {
+    console.log(import.meta.env.STRAPI_URL);
     const data =  await fetch(`${import.meta.env.STRAPI_URL}/graphql`,{
       method:'POST',
       headers: {'Content-Type':'application/json'},
