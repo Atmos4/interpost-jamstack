@@ -1,10 +1,11 @@
 ---
 import Page from "../../layouts/Page.astro";
 import PostGridItem from "../../components/PostGridItem.astro";
+import getStrapiUrl from "../../strapiUrl.js";
 
 export async function getStaticPaths({paginate}) {
-    console.log(import.meta.env.STRAPI_URL);
-    const data =  await fetch(`${import.meta.env.STRAPI_URL}/graphql`,{
+    console.log(getStrapiUrl());
+    const data =  await fetch(`${getStrapiUrl()}/graphql`,{
       method:'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -44,7 +45,7 @@ const { page } = Astro.props;
           title={post.attributes.title} 
           description={post.attributes.description} 
           slug={post.attributes.slug}
-          imageUrl={import.meta.env.STRAPI_URL + post.attributes.featuredImage.data.attributes.formats.medium.url}
+          imageUrl={getStrapiUrl() + post.attributes.featuredImage.data.attributes.formats.medium.url}
           imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
     </div>
 </Page>
