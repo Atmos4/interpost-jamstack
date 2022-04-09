@@ -4,7 +4,7 @@ import PostGridItem from "../../components/PostGridItem.astro";
 import getStrapiUrl from "../../strapiUrl.js";
 
 export async function getStaticPaths({paginate}) {
-    console.log(getStrapiUrl());
+    console.log(import.meta.env.STRAPI_URL);
     const data =  await fetch(`${getStrapiUrl()}/graphql`,{
       method:'POST',
       headers: {'Content-Type':'application/json'},
