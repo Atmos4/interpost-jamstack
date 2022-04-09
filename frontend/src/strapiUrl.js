@@ -1,5 +1,6 @@
 function getStrapiUrl() {
-  return import.meta.env.STRAPI_URL ?? process.env.PROD_STRAPI_URL;
+  // Silly workaround
+  return import.meta.env.STRAPI_URL ?? process.env.STRAPI_URL;
 }
 
 export default getStrapiUrl;

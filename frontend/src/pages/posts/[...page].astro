@@ -39,13 +39,13 @@ const { page } = Astro.props;
 ---
 
 <Page title={"Articles"}>
-    <div class="row">
-      {page.data.map((post)=> 
-        <PostGridItem 
-          title={post.attributes.title} 
-          description={post.attributes.description} 
-          slug={post.attributes.slug}
-          imageUrl={import.meta.env.STRAPI_URL ?? "" + post.attributes.featuredImage.data.attributes.formats.medium.url}
-          imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
-    </div>
+  <div class="row">
+    {page.data.map((post)=> 
+      <PostGridItem 
+        title={post.attributes.title} 
+        description={post.attributes.description} 
+        slug={post.attributes.slug}
+        imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
+        imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
+  </div>
 </Page>

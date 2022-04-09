@@ -68,13 +68,21 @@ const postItem = await fetch(`${getStrapiUrl()}/graphql`,{
 const {title, description, content} = postItem.data.findSlug.data.attributes;
 const {alternativeText, formats} = postItem.data.findSlug.data.attributes.featuredImage.data.attributes;
 ---
+<style>
+hgroup{
+    text-align: center;
+}
+img {
+    width:100%;
+}
+</style>
 <Page {title}>
     <hgroup>
         <h1>{title}</h1>
         <h2>{description}</h2>
     </hgroup>
-    <!--TODO: This will need to be changed once Cloudinary is setup-->
-    <img src={import.meta.env.STRAPI_URL ?? "" + formats.large.url} alt={alternativeText}>
-    <Markdown {content} />
-
+    <img src={(import.meta.env.STRAPI_URL ?? "") + formats.large.url} alt={alternativeText}>
+    <article>
+            <Markdown {content} />
+    </article>
 </Page>
