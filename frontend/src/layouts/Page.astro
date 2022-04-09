@@ -16,7 +16,10 @@ const { title } = Astro.props;
 }
 </style>
 
-<script type="module">import themeSwitcher from '/theme-switcher.js';themeSwitcher.init();</script>
+<script>
+  import themeSwitcher from "../utils/theme-switcher.js";
+  themeSwitcher.init();
+</script>
 
 <html lang="en">
   <head>
