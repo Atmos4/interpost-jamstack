@@ -1,10 +1,7 @@
 ---
-import ThemeSwitch from "../components/ThemeSwitch.svelte"
-
 const { title } = Astro.props;
 ---
 <style>
-@import url("https://fonts.googleapis.com/css?family=Oleo+Script:400|Open+Sans:400,400italic,600,600italic,800");
 .main-logo {
   background: #444;
   color: #fff;
@@ -19,6 +16,8 @@ const { title } = Astro.props;
 }
 </style>
 
+<script type="module">import themeSwitcher from '/src/utils/theme-switcher.js';themeSwitcher.init();</script>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -29,6 +28,7 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script:400"/>
   </head>
   <body>
     <nav class="container">
@@ -38,11 +38,12 @@ const { title } = Astro.props;
       <ul>
         <li><a class="contrast" href="/posts">Articles</a></li>
         <li><a class="contrast" href="/about">La team</a></li>
-        <li><ThemeSwitch client:load /></li>
+        <li><div class="theme-switcher"></div></li>
       </ul>
     </nav>
     <main class="container">
       <slot />
     </main>
+    
   </body>
 </html>

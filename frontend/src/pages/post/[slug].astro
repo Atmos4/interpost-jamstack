@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import { Markdown } from 'astro/components';
-import getStrapiUrl from "../../strapiUrl.js";
+import getStrapiUrl from "../../utils/env-fix.js";
 
 export async function getStaticPaths() {
     const data =  await fetch(`${getStrapiUrl()}/graphql`,{

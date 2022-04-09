@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import PostGridItem from "../../components/PostGridItem.astro";
-import getStrapiUrl from "../../strapiUrl.js";
+import getStrapiUrl from "../../utils/env-fix.js";
 
 export async function getStaticPaths({paginate}) {
     console.log(import.meta.env.STRAPI_URL);
