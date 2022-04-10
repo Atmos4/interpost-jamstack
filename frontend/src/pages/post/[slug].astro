@@ -72,19 +72,24 @@ const {alternativeText, formats} = postItem.data.findSlug.data.attributes.featur
 hgroup{
     text-align: center;
 }
+header img {
+    width: 100%;
+}
 article img {
-    max-height : 400px;
+    height : 400px;
     position : relative;
     left : 50%;
     transform: translateX(-50%);
 }
 </style>
 <Page {title}>
-    <hgroup>
-        <h1>{title}</h1>
-        <h2>{description}</h2>
-    </hgroup>
-    <img src={(import.meta.env.STRAPI_URL ?? "") + formats.large.url} alt={alternativeText}>
+    <header>
+        <hgroup>
+            <h1>{title}</h1>
+            <h2>{description}</h2>
+        </hgroup>
+        <img src={(import.meta.env.STRAPI_URL ?? "") + formats.large.url} alt={alternativeText}>
+    </header>
     <article>
             <Markdown {content} />
     </article>
