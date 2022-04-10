@@ -1,0 +1,28 @@
+---
+import "../styles/bootstrap-grid.css";
+
+const { name, bio, image } = Astro.props.author.attributes;
+---
+<style>
+.author-card{
+  text-align: center;
+  border-radius: 0;
+	padding : 10px;
+	height : 280px;
+}
+
+.author-card img{
+  margin : 10px 0 10px 0;
+  width : 150px;
+  height : 150px;
+  border-radius : 50%;
+	object-fit : cover;
+}
+</style>
+<article class="author-card col-sm-6 col-lg-4 col-xl-3">
+  <img src={(import.meta.env.STRAPI_URL ?? "") + image.data.attributes.formats.small.url} alt={image.data.attributes.alternativeText}>
+  <hgroup>
+    <h5>{name}</h5>
+    <p>{bio}</p>
+  </hgroup>
+</article>

@@ -1,7 +1,41 @@
 ---
 import Page from "../layouts/Page.astro";
+import AuthorCard from "../components/AuthorCard.astro"
+import getStrapiUrl from "../utils/env.js";
+
+const data = await fetch(`${getStrapiUrl()}/graphql`,{
+  method:'POST',
+  headers: {'Content-Type':'application/json'},
+  body: JSON.stringify({
+    query: `
+        query {
+          authors {
+            data {
+              attributes {
+                name
+                bio
+                image {
+                  data {
+                    attributes {
+                      alternativeText
+                      formats
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        `
+  }),
+}).then(res => res.json());
 ---
+<style>
+h1{
+  text-align: center;
+}
+</style>
 <Page title={"La team"}>
-<h1>Pour l'instant c'est assez solitaire...</h1>
-<p>Mais je vais recruter 😀</p>
+<h1>La team Interpost</h1>
+{data.data.authors.data.map(author => <AuthorCard {author} />)}
 </Page>
