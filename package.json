@@ -7,7 +7,7 @@
     "heroku": "git subtree push --prefix backend heroku master",
     "start:backend": "yarn --cwd backend dev",
     "start:frontend": "yarn --cwd frontend dev",
-    "start": "concurrently \"yarn dev:backend\" \"wait-on http://localhost:1337 && yarn dev:frontend\""
+    "start": "concurrently \"yarn start:backend\" \"wait-on http://localhost:1337 && yarn start:frontend\""
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

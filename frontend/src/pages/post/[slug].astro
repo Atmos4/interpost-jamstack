@@ -72,8 +72,11 @@ const {alternativeText, formats} = postItem.data.findSlug.data.attributes.featur
 hgroup{
     text-align: center;
 }
-img {
-    width:100%;
+article img {
+    max-height : 400px;
+    position : relative;
+    left : 50%;
+    transform: translateX(-50%);
 }
 </style>
 <Page {title}>
