@@ -5,23 +5,35 @@ export interface PostGridItemProps {
     title: string;
     description: string;
     slug: string;
+    featured?: boolean;
     imageUrl?: string;
     imageAlt?: string;
 }
-const { title, description, slug, imageUrl, imageAlt } = Astro.props as PostGridItemProps;
+const { title, description, slug, featured, imageUrl, imageAlt } = Astro.props as PostGridItemProps;
+const linkClassName = featured ? "contrast featured" : "contrast";
+const btClasses = featured ? "col-12" : "col-sm-12 col-lg-6 col-xl-4";
 ---
 <style>
 article{
+    margin: 10px 0;
     padding:0;
     overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 a {
     text-decoration: none;
 }
-.image {
+.featured {
+    display: flex;
+}
+img {
     object-fit: cover;
     width: 100%;
     height: 250px;
+}
+.featured img {
+    width: 60%;
+    height: auto;
 }
 .text{
     height: 200px;
@@ -32,10 +44,10 @@ a {
    margin: 0;
 }
 </style>
-<div class="col-sm-12 col-lg-6 col-xl-4">
+<div class={btClasses}>
     <article>
-        <a class="contrast grid-item" href={`/post/${slug}`}>
-            <img class="image" src={imageUrl} alt={imageAlt} />
+        <a class={linkClassName} href={`/post/${slug}`}>
+            <img src={imageUrl} alt={imageAlt} />
             <div class="text">
                 <h3>{title}</h3>
                 <p>{description}</p>

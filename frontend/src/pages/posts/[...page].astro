@@ -4,32 +4,30 @@ import PostGridItem from "../../components/PostGridItem.astro";
 import getStrapiUrl from "../../utils/env.js";
 
 export async function getStaticPaths({paginate}) {
-    console.log(import.meta.env.STRAPI_URL);
     const data =  await fetch(`${getStrapiUrl()}/graphql`,{
       method:'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         query: `
-          query{
-            posts{
-              data{
-                attributes{
-                  title,
-                  description,
-                  slug,
-                  featuredImage{
-                    data{
-                      attributes{
-                        alternativeText,
-                        formats,
+          query {
+            posts(sort:"publishedAt:desc") {
+              data {
+                attributes {
+                  title
+                  description
+                  slug
+                  featuredImage {
+                    data {
+                      attributes {
+                        alternativeText
+                        formats
                       }
                     }
                   }
                 }
               }
             }
-          }
-          `,
+          }`,
       }),
     }).then(res => res.json());
     return paginate(data.data.posts.data, {pageSize: 6});

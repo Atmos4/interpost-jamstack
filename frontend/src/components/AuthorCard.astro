@@ -2,6 +2,8 @@
 import "../styles/bootstrap-grid.css";
 
 const { name, bio, image } = Astro.props.author.attributes;
+const imageUrl = (import.meta.env.STRAPI_URL ?? "") + image.data.attributes.formats.thumbnail.url;
+const imageAlt = image.data.attributes.alternativeText;
 ---
 <style>
 .author-card{
@@ -9,10 +11,10 @@ const { name, bio, image } = Astro.props.author.attributes;
   border-radius: 0;
 	padding : 10px;
 	height : 280px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .author-card img{
-  margin : 10px 0 10px 0;
   width : 150px;
   height : 150px;
   border-radius : 50%;
@@ -20,7 +22,7 @@ const { name, bio, image } = Astro.props.author.attributes;
 }
 </style>
 <article class="author-card col-sm-6 col-lg-4 col-xl-3">
-  <img src={(import.meta.env.STRAPI_URL ?? "") + image.data.attributes.formats.thumbnail.url} alt={image.data.attributes.alternativeText}>
+  <img src={imageUrl} alt={imageAlt}>
   <hgroup>
     <h5>{name}</h5>
     <p>{bio}</p>

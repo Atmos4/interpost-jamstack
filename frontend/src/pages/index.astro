@@ -2,9 +2,38 @@
 import "../styles/bootstrap-grid.css"
 
 import Page from "../layouts/Page.astro";
-import Tour from "../components/Tour.astro";
+import getStrapiUrl from "../utils/env"
+import PostGridItem from "../components/PostGridItem.astro";
 
 let title = "Interpost";
+
+const data =  await fetch(`${getStrapiUrl()}/graphql`,{
+  method:'POST',
+  headers: {'Content-Type':'application/json'},
+  body: JSON.stringify({
+    query: `
+      query {
+        posts(sort:"publishedAt:desc",pagination:{limit:3}) {
+          data {
+            attributes {
+              title
+              description
+              slug
+              featuredImage {
+                data {
+                  attributes {
+                    alternativeText
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`,
+  }),
+}).then(res => res.json());
+
 ---
 
 <Page {title}>
@@ -13,6 +42,15 @@ let title = "Interpost";
       <h1>Welcome to Interpost v2, built with <a href="https://astro.build/">Astro</a> and <a href="https://strapi.io/">Strapi</a></h1>
     </div>
   </header>
+  <div class="row">
+    {data.data.posts.data.map((post,index)=>
+    <PostGridItem 
+        title={post.attributes.title} 
+        description={post.attributes.description} 
+        slug={post.attributes.slug}
+        featured={index==0}
+        imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
+        imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
+  </div>
 
-  <Tour />
 </Page>
