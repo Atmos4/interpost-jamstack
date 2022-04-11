@@ -3,7 +3,7 @@ import "../styles/bootstrap-grid.css";
 
 const { name, bio, image } = Astro.props.author.attributes;
 const imageUrl = image.data ? 
-  (import.meta.env.STRAPI_URL ?? "") + image.data?.attributes.formats.thumbnail.url : 
+  (import.meta.env.STRAPI_URL ?? "") + image.data?.attributes.formats.medium.url : 
   "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
 ---
 <style>
