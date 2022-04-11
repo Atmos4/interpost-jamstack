@@ -9,7 +9,7 @@ const data = await fetch(`${getStrapiUrl()}/graphql`,{
   body: JSON.stringify({
     query: `
         query {
-          authors(filters: { level: { eq: "TEAM" } }) {
+          authors(filters: { level: { eq: "TEAM" } }, sort: "id") {
             data {
               attributes {
                 name
