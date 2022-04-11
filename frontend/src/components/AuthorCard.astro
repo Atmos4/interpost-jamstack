@@ -2,29 +2,34 @@
 import "../styles/bootstrap-grid.css";
 
 const { name, bio, image } = Astro.props.author.attributes;
-const imageUrl = (import.meta.env.STRAPI_URL ?? "") + image.data.attributes.formats.thumbnail.url;
-const imageAlt = image.data.attributes.alternativeText;
+const imageUrl = image.data ? 
+  (import.meta.env.STRAPI_URL ?? "") + image.data?.attributes.formats.thumbnail.url : 
+  "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
 ---
 <style>
 .author-card{
   text-align: center;
   border-radius: 0;
+  margin: 20px 0;
 	padding : 10px;
 	height : 280px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .author-card img{
+  margin: 10px 0;
   width : 150px;
   height : 150px;
   border-radius : 50%;
 	object-fit : cover;
 }
 </style>
-<article class="author-card col-sm-6 col-lg-4 col-xl-3">
-  <img src={imageUrl} alt={imageAlt}>
-  <hgroup>
-    <h5>{name}</h5>
-    <p>{bio}</p>
-  </hgroup>
-</article>
+<div class="col-sm-6 col-lg-4 col-xl-3">
+  <article class="author-card">
+    <img src={imageUrl}>
+    <hgroup>
+      <h5>{name}</h5>
+      <p>{bio}</p>
+    </hgroup>
+  </article>
+</div>

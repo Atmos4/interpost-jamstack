@@ -9,7 +9,7 @@ const data = await fetch(`${getStrapiUrl()}/graphql`,{
   body: JSON.stringify({
     query: `
         query {
-          authors {
+          authors(filters: { level: { eq: "TEAM" } }) {
             data {
               attributes {
                 name
@@ -37,5 +37,7 @@ h1{
 </style>
 <Page title={"La team"}>
 <h1>La team Interpost</h1>
-{data.data.authors.data.map(author => <AuthorCard {author} />)}
+<div class="row">
+  {data.data.authors.data.map(author => <AuthorCard {author} />)}
+</div>
 </Page>
