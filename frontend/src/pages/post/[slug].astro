@@ -10,7 +10,7 @@ export async function getStaticPaths() {
       body: JSON.stringify({
         query: `
             query{
-                posts{
+                posts(pagination: { page: 1, pageSize: 100 }){
                     data{
                         attributes{
                             slug,
