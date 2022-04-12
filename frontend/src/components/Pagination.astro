@@ -2,11 +2,20 @@
 export interface Props {
 	prevUrl: string;
 	nextUrl: string;
+    start: number;
+    end: number;
+    total: number;
+
 }
 
-const { prevUrl, nextUrl } = Astro.props;
+const { prevUrl, nextUrl, start, end, total } = Astro.props;
 ---
 <nav>
-    <a href={prevUrl || '#'} aria-label="Previous Page">⏮</a>
-    <a href={nextUrl || '#'} aria-label="Next Page">⏭</a>
+    <ul><a href={prevUrl || '#'} aria-label="Previous Page">Page précédente</a></ul>
+    <ul>{start + 1}–{end + 1} / {total}</ul>
+    <ul><a href={nextUrl || '#'} aria-label="Next Page">Page suivante</a></ul>
 </nav>
+
+<style>
+
+</style>
