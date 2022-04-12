@@ -44,13 +44,15 @@ const data =  await fetch(`${getStrapiUrl()}/graphql`,{
   </header>
   <div class="row">
     {data.data.posts.data.map((post,index)=>
-    <PostGridItem 
-        title={post.attributes.title} 
-        description={post.attributes.description} 
-        slug={post.attributes.slug}
-        featured={index==0}
-        imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
-        imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />)}
+    <div class={index==0 ? "col-12" : "col-sm-12 col-lg-6"}>
+      <PostGridItem 
+          title={post.attributes.title} 
+          description={post.attributes.description} 
+          slug={post.attributes.slug}
+          featured={index==0}
+          imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
+          imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />
+      </div>)}
   </div>
 
 </Page>

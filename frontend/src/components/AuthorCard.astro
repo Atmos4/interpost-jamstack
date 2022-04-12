@@ -3,14 +3,14 @@ import "../styles/bootstrap-grid.css";
 
 const { name, bio, image } = Astro.props.author.attributes;
 const imageUrl = image.data ? 
-  (import.meta.env.STRAPI_URL ?? "") + image.data?.attributes.formats.medium.url : 
+  (import.meta.env.STRAPI_URL ?? "") + image.data?.attributes.formats.small.url : 
   "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
 ---
 <style>
 .author-card{
   text-align: center;
   border-radius: 0;
-  margin: 20px 0;
+  margin: 13.5px 0;
 	padding : 10px;
 	height : 280px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
