@@ -34,6 +34,12 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script:400"/>
   </head>
   <body>
+
+    <!--Facebook SDK-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v13.0" nonce="49oAR1Mw"></script>
+
+    <!--Nav-->
     <nav class="container">
       <ul>
         <li><a class="contrast main-logo" href="/">Interpost</a></li>
@@ -44,9 +50,10 @@ const { title } = Astro.props;
         <li><div class="theme-switcher"></div></li>
       </ul>
     </nav>
+
+    <!--Main content-->
     <main class="container">
       <slot />
     </main>
-    
   </body>
 </html>

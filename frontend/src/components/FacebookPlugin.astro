@@ -1,0 +1,52 @@
+<script>
+  let timeout=0;
+
+  function reloadPlugin() {
+    const fbColumn = document.getElementById("fb-column");
+    const fbPage = document.getElementById("fbPage");
+    fbPage.setAttribute("data-width", fbColumn.clientWidth);
+    fbPage.setAttribute("data-height", fbColumn.clientHeight);
+    if (typeof FB !== "undefined") {
+      FB.XFBML.parse();
+    }
+  }
+
+  function onResize() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => reloadPlugin(), 1000);
+  }
+
+  window.addEventListener("load",()=> reloadPlugin());
+  window.addEventListener("resize",()=> onResize());
+</script>
+
+<style>
+#fb-column {
+  flex: 1;
+  margin: 10px 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+/* Yikes FB iframe sucks ass */
+#fbPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>
+
+<article id="fb-column">
+  <div
+    id="fbPage" 
+    class="fb-page" 
+    data-href="https://www.facebook.com/Interpostorientation" 
+    data-tabs="timeline" 
+    data-width="" 
+    data-height="" 
+    data-small-header="true" 
+    data-adapt-container-width="true" >
+  </div>
+</article>

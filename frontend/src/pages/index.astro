@@ -4,6 +4,7 @@ import "../styles/bootstrap-grid.css"
 import Page from "../layouts/Page.astro";
 import getStrapiUrl from "../utils/env"
 import PostCard from "../components/PostCard.astro";
+import FacebookPlugin from "../components/FacebookPlugin.astro"
 
 let title = "Interpost";
 
@@ -35,18 +36,33 @@ const data =  await fetch(`${getStrapiUrl()}/graphql`,{
 }).then(res => res.json());
 
 ---
-
+<style>
+#fb-wrapper{
+  overflow:visible;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+</style>
 <Page {title}>
   <div class="row">
-    {data.data.posts.data.map((post,index)=>
-      <PostCard 
-          title={post.attributes.title} 
-          description={post.attributes.description} 
-          slug={post.attributes.slug}
-          classes={index==0 ? "col-12" : "col-sm-12 col-lg-6"}
-          featured={index==0}
-          imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
-          imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />
-    )}
+    <div class="col-sm-12 col-md-6 col-xl-8">
+      <div class="row">
+        {data.data.posts.data.map((post,index)=>
+          <PostCard 
+              title={post.attributes.title} 
+              description={post.attributes.description} 
+              slug={post.attributes.slug}
+              classes={index==0 ? "col-12" : "col-sm-12 col-xl-6"}
+              featured={index==0}
+              imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
+              imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />
+        )}
+      </div>
+    </div>
+    <div id="fb-wrapper" class="col-sm-12 col-md-6 col-xl-4">
+      <FacebookPlugin />
+    </div>
   </div>
 </Page>
+

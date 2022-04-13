@@ -1,0 +1,52 @@
+<script>
+  let timeout=0, fbColumn, fbWrapper,fbPage;
+
+  function reloadPlugin() {
+    fbPage.style.height = 500;
+    console.log( `new dimensions: ${fbColumn.clientWidth} ${fbWrapper.clientHeight}`);
+    
+    fbPage.setAttribute("data-width", fbColumn.clientWidth);
+    fbPage.setAttribute("data-height", fbWrapper.clientHeight -20);
+    console.log(
+      `plugin attributes changed: ${fbPage.getAttribute(
+        "data-width"
+      )} ${fbPage.getAttribute("data-height")}`
+    );
+    if (typeof FB !== "undefined") {
+      FB.XFBML.parse();
+      console.log("resized");
+    }
+  }
+
+  function onResize() {
+    console.log("resize");
+    // clear the timeout
+    clearTimeout(timeout);
+    // start timing for event "completion"
+    timeout = setTimeout(() => reloadPlugin(), 1000);
+  }
+
+  function onLoad(){
+    fbColumn = document.getElementById("fb-column");
+    fbWrapper = document.getElementById("fb-wrapper");
+    fbPage = document.getElementById("fbPage");
+    reloadPlugin();
+    console.log("loaded");
+  }
+
+  window.addEventListener("load",()=> onLoad());
+  // window.resize event listener
+  window.addEventListener("resize",()=> onResize());
+</script>
+
+<style>
+article{
+margin: 10px 0;
+padding: 0;
+min-height: 600px;
+}
+</style>
+
+<article id="fb-column">
+  <div id="fbPage" class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Meta</a></blockquote></div>
+</article>
