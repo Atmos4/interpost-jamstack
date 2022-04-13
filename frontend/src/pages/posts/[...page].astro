@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import Pagination from "../../components/Pagination.astro"
-import PostGridItem from "../../components/PostGridItem.astro";
+import PostCard from "../../components/PostCard.astro";
 import getStrapiUrl from "../../utils/env.js";
 
 export async function getStaticPaths({paginate}) {
@@ -46,15 +46,15 @@ const { page } = Astro.props;
     total={page.total}/>
   <div class="row">
     {page.data.map((post)=> 
-      <div class="col-sm-12 col-lg-6 col-xl-4">
-        <PostGridItem 
+        <PostCard 
           title={post.attributes.title} 
           description={post.attributes.description} 
           slug={post.attributes.slug}
+          classes="col-sm-12 col-lg-6 col-xl-4"
           imageUrl={(import.meta.env.STRAPI_URL ?? "") + 
             (post.attributes.featuredImage.data.attributes.formats.medium?.url ?? 
             post.attributes.featuredImage.data.attributes.url)}
           imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />
-      </div>)}
+    )}
   </div>
 </Page>

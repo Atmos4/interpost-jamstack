@@ -3,7 +3,7 @@ import "../styles/bootstrap-grid.css"
 
 import Page from "../layouts/Page.astro";
 import getStrapiUrl from "../utils/env"
-import PostGridItem from "../components/PostGridItem.astro";
+import PostCard from "../components/PostCard.astro";
 
 let title = "Interpost";
 
@@ -37,22 +37,16 @@ const data =  await fetch(`${getStrapiUrl()}/graphql`,{
 ---
 
 <Page {title}>
-  <header class="container">
-    <div>
-      <h1>Welcome to Interpost v2, built with <a href="https://astro.build/">Astro</a> and <a href="https://strapi.io/">Strapi</a></h1>
-    </div>
-  </header>
   <div class="row">
     {data.data.posts.data.map((post,index)=>
-    <div class={index==0 ? "col-12" : "col-sm-12 col-lg-6"}>
-      <PostGridItem 
+      <PostCard 
           title={post.attributes.title} 
           description={post.attributes.description} 
           slug={post.attributes.slug}
+          classes={index==0 ? "col-12" : "col-sm-12 col-lg-6"}
           featured={index==0}
           imageUrl={(import.meta.env.STRAPI_URL ?? "") + post.attributes.featuredImage.data.attributes.formats.medium.url}
           imageAlt={post.attributes.featuredImage.data.attributes.alternativeText} />
-      </div>)}
+    )}
   </div>
-
 </Page>
