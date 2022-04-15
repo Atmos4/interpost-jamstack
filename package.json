@@ -5,9 +5,10 @@
   "description": "Strapi + Astro = ♥",
   "scripts": {
     "heroku": "git subtree push --prefix backend heroku master",
-    "start:backend": "yarn --cwd backend dev",
-    "start:frontend": "yarn --cwd frontend dev",
-    "start": "concurrently \"yarn start:backend\" \"wait-on http://localhost:1337 && yarn start:frontend\""
+    "setup": "yarn install && yarn --cwd backend install && yarn --cwd frontend install",
+    "dev:backend": "yarn --cwd backend dev",
+    "dev:frontend": "yarn --cwd frontend dev",
+    "dev": "concurrently \"yarn dev:backend\" \"wait-on http://localhost:1337 && yarn dev:frontend\""
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

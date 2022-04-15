@@ -11,21 +11,14 @@ Tech stack:
 
 ## Run the project locally
 
-This repository uses `yarn workspaces` for easy setup.
+In both `backend` and `frontend` directories
 
-- Clone the repo
-- Run `yarn` anyywhere (yarn workspaces magic 🎉).
-- Run `yarn dev`, or `yarn dev:backend` and `yarn dev:frontend` in two terminals.
+- `npm install` (or `yarn install`)
+- `npm run dev` (or `yarn dev`)
+
+If you have `yarn` installed I created commands from the root directory:
+
+- `yarn setup` to install all dependencies
+- `yarn dev` to start everything
 
 The backend can then be accessed at http://localhost:1337 and the frontend at http://localhost:3000. Have fun!
-
-## Disclaimers
-
-Astro is very new and still in beta, so there is a lot of improvements about things that aren't supported yet, things that I did wrong and things that I don't know.
-
-Besides, a lot of improvement can be done regarding typings. Adding GraphQL typings for example would be a reasonable thing to do for scalability, right now things are a bit wack 😅
-
-## Recommanded VSCode plugins
-
-- Astro official plugin
-- Svelte official plugin

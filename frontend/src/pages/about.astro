@@ -8,25 +8,25 @@ const data = await fetch(`${getStrapiUrl()}/graphql`,{
   headers: {'Content-Type':'application/json'},
   body: JSON.stringify({
     query: `
-        query {
-          authors(filters: { level: { eq: "TEAM" } }, sort: "id") {
-            data {
-              attributes {
-                name
-                bio
-                image {
-                  data {
-                    attributes {
-                      alternativeText
-                      formats
-                    }
+      query {
+        authors(filters: { level: { eq: "TEAM" } }, sort: "id") {
+          data {
+            attributes {
+              name
+              bio
+              image {
+                data {
+                  attributes {
+                    alternativeText
+                    formats
                   }
                 }
               }
             }
           }
         }
-        `
+      }
+      `
   }),
 }).then(res => res.json());
 ---
