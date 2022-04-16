@@ -11,14 +11,20 @@ Tech stack:
 
 ## Run the project locally
 
-In both `backend` and `frontend` directories
+You need to setup a `.env` file in the `backend` directory. You can take inspiration from `.env.example`.
 
-- `npm install` (or `yarn install`)
-- `npm run dev` (or `yarn dev`)
+- Install `yarn`: `npm install --global yarn`
 
-If you have `yarn` installed I created commands from the root directory:
+Then either from the root directory:
 
 - `yarn setup` to install all dependencies
 - `yarn dev` to start everything
+
+Or in both `backend` and `frontend` directories
+
+- `yarn install`
+- `yarn dev`
+
+You also need to setup a `.env` file in the `backend` directory. You can take inspiration from `.env.example`.
 
 The backend can then be accessed at http://localhost:1337 and the frontend at http://localhost:3000. Have fun!

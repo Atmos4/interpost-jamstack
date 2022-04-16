@@ -1,6 +1,6 @@
 # Interpost frontend - Astro 🚀
 
-Frontend project. Built with Astro, Svelte and PicoCSS.
+Frontend project. Built with Astro and PicoCSS.
 
 ## Commands
 
@@ -13,4 +13,4 @@ Frontend project. Built with Astro, Svelte and PicoCSS.
 
 ## 👀 Want to learn more?
 
-Check the docs for [Astro](https://docs.astro.build/en/getting-started/), [PicoCSS](https://picocss.com/docs/) and [Svelte](https://svelte.dev/docs)
+Check the docs for [Astro](https://docs.astro.build/en/getting-started/) and [PicoCSS](https://picocss.com/docs/)
