@@ -17,14 +17,14 @@
       "required": true,
       "unique": true
     },
-    "post": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::post.post",
-      "inversedBy": "categories"
-    },
     "slug": {
       "type": "string"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "category"
     }
   }
 }

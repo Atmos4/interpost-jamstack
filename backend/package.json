@@ -2,7 +2,7 @@
   "name": "backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Interpost backend with Strapi",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",
@@ -22,7 +22,7 @@
     "strapi-plugin-slugify": "^2.2.1"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Atmos4"
   },
   "strapi": {
     "uuid": "4530b9c4-0f05-475d-a87b-f264310ba7f9"

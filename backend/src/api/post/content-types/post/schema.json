@@ -38,11 +38,11 @@
       "relation": "oneToOne",
       "target": "api::author.author"
     },
-    "categories": {
+    "category": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::category.category",
-      "mappedBy": "post"
+      "inversedBy": "posts"
     },
     "slug": {
       "type": "string"
