@@ -1,0 +1,29 @@
+---
+export interface RoundButtonProps {
+  href: string;
+  size?: string;
+  faClass: string;
+  external?: boolean;
+  ariaLabel?: string;
+}
+
+const { href, faClass, external, size, ariaLabel } = Astro.props as RoundButtonProps;
+const target = external? "_blank":"";
+const style= size?`width:${size}`:"";
+---
+<style>
+.round {
+  padding: 0;
+  border-radius: 50%;
+  line-height: 0.1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  aspect-ratio: 1;
+}
+</style>
+
+<a role="button" class="contrast round" {href} {target} aria-label={ariaLabel} {style}>
+  <i class={faClass}></i>
+</a>

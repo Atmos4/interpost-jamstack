@@ -1,4 +1,7 @@
 ---
+import RoundButton from "../components/RoundButton.astro";
+import ThemeSwitch from "../components/ThemeSwitch.astro";
+
 export interface PageProps{
   title: string;
   fluid?: boolean
@@ -24,22 +27,10 @@ const mainClass = `container${fluid ? "-fluid":""}`;
 footer {
   text-align: center;
 }
-footer .links a {
-  padding: 0;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 2.2rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
+footer .links {
   margin-bottom: 1rem;
 }
 </style>
-
-<script>
-  import themeSwitcher from "../utils/theme-switcher.js";
-  themeSwitcher.init();
-</script>
 
 <html lang="en">
   <head>
@@ -53,13 +44,9 @@ footer .links a {
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script:400"/>
     <script src="https://kit.fontawesome.com/e8f21c5038.js" crossorigin="anonymous"></script>
+    <script is:inline src="/theme-toggle.js"></script>
   </head>
   <body>
-
-    <!--Facebook SDK-->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v13.0" nonce="49oAR1Mw"></script>
-
     <!--Nav-->
     <nav class="container">
       <ul>
@@ -68,7 +55,9 @@ footer .links a {
       <ul>
         <li><a class="contrast" href="/posts">Articles</a></li>
         <li><a class="contrast" href="/about">La team</a></li>
-        <li><div class="theme-switcher"></div></li>
+        <li>
+          <ThemeSwitch />
+        </li>
       </ul>
     </nav>
 
@@ -80,9 +69,9 @@ footer .links a {
     <!--Footer-->
     <footer>
       <div class="links">
-        <a role="button" class="contrast" href="https://www.facebook.com/Interpostorientation" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-        <a role="button" class="contrast" href="https://youtu.be/dQw4w9WgXcQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a role="button" class="contrast" href="#"><i class="fa-solid fa-rss"></i></a>
+        <RoundButton href="https://www.facebook.com/Interpostorientation" faClass="fa-brands fa-facebook-f" external/>
+        <RoundButton href="https://youtu.be/dQw4w9WgXcQ" faClass="fa-brands fa-youtube" external/>
+        <RoundButton href="#" faClass="fa-solid fa-rss"/>
       </div>
       <small>&copy; Interpost. All rights reserved</small>
     </footer>

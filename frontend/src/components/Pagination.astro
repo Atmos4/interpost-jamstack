@@ -1,4 +1,6 @@
 ---
+import RoundButton from "./RoundButton.astro";
+
 export interface Props {
 	prevUrl: string;
 	nextUrl: string;
@@ -11,9 +13,23 @@ export interface Props {
 const { prevUrl, nextUrl, start, end, total } = Astro.props;
 ---
 <nav>
-    <ul><a href={prevUrl || '#'} aria-label="Previous Page">Page précédente</a></ul>
-    <ul>{start + 1}–{end + 1} / {total}</ul>
-    <ul><a href={nextUrl || '#'} aria-label="Next Page">Page suivante</a></ul>
+    <ul></ul>
+    <ul>
+    { prevUrl && (
+        <li>
+            <RoundButton href={prevUrl || '#'} size="1.5rem" ariaLabel="Previous Page" faClass="fa-solid fa-caret-left"/>
+        </li>
+    )}
+        <li>
+            {start + 1}–{end + 1} / {total}
+        </li>
+    { nextUrl && (
+        <li>
+            <RoundButton href={nextUrl || '#'} size="1.5rem" ariaLabel="Next Page" faClass="fa-solid fa-caret-right"/>
+        </li>
+    )}
+    </ul>
+    <ul></ul>
 </nav>
 
 <style>
