@@ -20,6 +20,20 @@ const mainClass = `container${fluid ? "-fluid":""}`;
   display: inline-block;
   vertical-align: middle;
 }
+
+footer {
+  text-align: center;
+}
+footer .links a {
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
 </style>
 
 <script>
@@ -38,6 +52,7 @@ const mainClass = `container${fluid ? "-fluid":""}`;
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script:400"/>
+    <script src="https://kit.fontawesome.com/e8f21c5038.js" crossorigin="anonymous"></script>
   </head>
   <body>
 
@@ -61,5 +76,15 @@ const mainClass = `container${fluid ? "-fluid":""}`;
     <main class={mainClass}>
       <slot />
     </main>
+
+    <!--Footer-->
+    <footer>
+      <div class="links">
+        <a role="button" class="contrast" href="https://www.facebook.com/Interpostorientation" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+        <a role="button" class="contrast" href="https://youtu.be/dQw4w9WgXcQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a role="button" class="contrast" href="#"><i class="fa-solid fa-rss"></i></a>
+      </div>
+      <small>&copy; Interpost. All rights reserved</small>
+    </footer>
   </body>
 </html>
